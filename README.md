@@ -1,123 +1,146 @@
-This is a comprehensive description of the **RetroRaster** project. To present this as a proper `README.md` file, I'll organize the information using standard Markdown conventions, including headings, lists, code blocks, and the final license section.
+# RetroRaster Deployment & Setup Documentation
 
-Here is the complete `README.md` content you can copy:
-
-```markdown
-# 🎨 RetroRaster: BGI Graphics in the Browser
-
-RetroRaster is a modern, web-based Integrated Development Environment (IDE) that lets you compile and run classic **C programs with BGI (Borland Graphics Interface) graphics** directly in your browser. This is achieved by leveraging **WebAssembly (WASM)**, compiled using the Emscripten SDK and an SDL2-based BGI implementation.
+RetroRaster is a browser-based IDE I created for running classic C programs with BGI graphics using WebAssembly. This guide explains deployment, dependencies, environment setup, and configuration for the public GitHub repository.
 
 ---
 
-## ✨ Features
+## Overview
 
-* **WASM Compilation:** Compile C code with BGI graphics directly to WebAssembly using a Node.js backend and Emscripten.
-* **Interactive Graphics:** Run compiled graphics programs instantly inside an interactive HTML `<canvas>` element in the browser.
-* **Real-time Feedback:** Provides real-time compilation status, detailed error handling, and console logging.
-* **Modern Interface:** Built with Svelte, featuring an editable font size and a toggle for light/dark themes.
-* **Portable:** Operates entirely in any modern browser—no local compiler setup or installation is required for users.
+RetroRaster compiles C graphics code in the browser using a Node.js backend and a Svelte frontend. It uses Emscripten to generate WebAssembly and renders output in an HTML canvas. In short, it lets you write classic BGI C graphics code and see it run directly in the browser.
 
 ---
 
-## 🛠️ Project Structure
+## Demo Media (Image / Video / GIF)
 
-The project is split into a Node.js compilation **backend** and a Svelte **frontend**.
-
-RetroRaster/
-├─ backend/
-│ ├─ compiler/ ← Emscripten SDK and SDL2_BGI sources (excluded from Git)
-│ ├─ server.js ← Node.js server for handling compilation requests
-│ └─ package.json
-├─ frontend/
-│ ├─ src/
-│ │ └─ App.svelte ← Main Svelte application component
-│ └─ package.json
-└─ .gitignore
-
-> **Note:** The `emsdk` and `sdl_bgi` directories are external dependencies that must be downloaded locally and are intentionally excluded from the repository (see `.gitignore`).
+You can add screenshots, demo videos, or GIFs here later to visually showcase RetroRaster on GitHub.
 
 ---
 
-## 🚀 Setup Instructions
+## Deployment Steps
+
+Follow these steps to run RetroRaster locally.
 
 ### 1. Clone the Repository
 
 ```bash
 git clone <repo_url>
 cd RetroRaster
-````
+```
 
-### 2\. Download Dependencies
+### 2. Obtain Dependencies: Emscripten SDK & SDL2_BGI
 
-The project relies on the **Emscripten SDK** for WASM compilation and the **SDL2\_BGI** library for BGI compatibility.
+RetroRaster needs Emscripten and SDL2_BGI for WASM compilation and BGI graphics.
 
-#### Emscripten SDK
+#### Download and Set Up Emscripten SDK
 
 ```bash
-git clone [https://github.com/emscripten-core/emsdk.git](https://github.com/emscripten-core/emsdk.git) backend/compiler/emsdk
+git clone https://github.com/emscripten-core/emsdk.git backend/compiler/emsdk
 cd backend/compiler/emsdk
 ./emsdk install latest
 ./emsdk activate latest
-cd ../../.. # Return to RetroRaster root
+cd ../../..
 ```
 
-#### SDL2\_BGI
+#### Download SDL2_BGI
 
 ```bash
-git clone [https://github.com/tschaub/SDL2_bgi.git](https://github.com/tschaub/SDL2_bgi.git) backend/compiler/sdl_bgi
+git clone https://github.com/tschaub/SDL2_bgi.git backend/compiler/sdl_bgi
 ```
 
-### 3\. Install Node Dependencies
+> **Note:** These libraries are intentionally excluded from source control by `.gitignore`.
 
-Install dependencies for both the backend and the frontend using `pnpm` (or `npm`/`yarn`).
+### 3. Install Node.js Dependencies
+
+Install dependencies for backend and frontend with `pnpm`, `npm`, or `yarn`.
+
+#### Backend
 
 ```bash
 cd backend
 pnpm install
+```
+
+#### Frontend
+
+```bash
 cd ../frontend
 pnpm install
 ```
 
------
+---
 
-## ▶️ Running Locally
+## Environment Setup & Configuration
 
-### Backend (Compilation Server)
+### Directory Structure
+
+```plaintext
+RetroRaster/
+├─ backend/
+│  ├─ compiler/
+│  │  ├─ emsdk/         # Emscripten SDK (external)
+│  │  └─ sdl_bgi/       # SDL2_BGI library (external)
+│  ├─ server.js         # Node.js backend
+│  └─ package.json
+├─ frontend/
+│  ├─ src/
+│  │  └─ App.svelte
+│  └─ package.json
+└─ .gitignore
+```
+
+### .gitignore Settings
+
+Ensure these entries exist to avoid committing large or generated files.
+
+```plaintext
+backend/compiler/emsdk/
+backend/compiler/sdl_bgi/
+node_modules/
+dist/
+```
+
+---
+
+## Running the Application Locally
+
+### 1. Start the Backend (Compilation Server)
 
 ```bash
 cd backend
 node server.js
 ```
 
-The compilation server will start at `http://localhost:3000`.
+- Serves at `http://localhost:3000`.
+- Compiles C code to WASM for the frontend.
 
-### Frontend (Svelte App)
+### 2. Start the Frontend (Svelte Application)
 
 ```bash
-cd frontend
+cd ../frontend
 pnpm dev
 ```
 
-The Svelte frontend runs at `http://localhost:5173` and automatically connects to the backend API for compilation.
+- Runs at `http://localhost:5173`.
+- Connects to the backend for compilation.
 
------
+---
 
-## 💻 Usage
+## Usage Flow
 
-1.  **Open** the frontend in your browser (`http://localhost:5173`).
-2.  **Write or modify** C code in the editor (example code is preloaded).
-3.  Click **"Compile & Run"**.
-4.  The graphics output will appear inside the **interactive canvas**.
-5.  **Press keys** inside the canvas to interact with BGI functions like `getch()`.
+1. Open `http://localhost:5173` in your browser.
+2. Edit or paste C code in the editor.
+3. Click **"Compile & Run"**.
+4. View graphics in the canvas and interact as needed.
 
-### Example C Code
+---
 
-The following simple program demonstrates drawing a circle and text:
+## Example: C Code for Graphics
 
 ```c
 #include "graphics.h"
 
-int main() {
+int main()
+{
     initwindow(600, 400, "WASM Test");
     setcolor(RED);
     circle(300, 200, 150);
@@ -129,42 +152,88 @@ int main() {
 }
 ```
 
------
+---
 
-## ⚙️ Technical Details
+## Backend API Endpoint
 
-### Backend Features (Node.js)
+The frontend calls this endpoint to compile code.
 
-  * **API Endpoint:** Accepts C code via `POST /api/compile`.
-  * **Compilation:** Invokes the Emscripten toolchain, linking against the SDL2\_BGI library.
-  * **Output:** Returns the compiled WASM-integrated HTML/JS to the frontend as a blob for dynamic embedding.
-  * **Robustness:** Includes graceful handling for compilation errors and exceptions.
+```api
+{
+    "title": "Compile C Code to WASM",
+    "description": "Compiles submitted C code with BGI graphics to WebAssembly and returns the result.",
+    "method": "POST",
+    "baseUrl": "http://localhost:3000",
+    "endpoint": "/api/compile",
+    "headers": [
+        {
+            "key": "Content-Type",
+            "value": "application/json",
+            "required": true
+        }
+    ],
+    "queryParams": [],
+    "pathParams": [],
+    "bodyType": "json",
+    "requestBody": "{\n  \"code\": \"#include \\\"graphics.h\\\"\\nint main() { ... }\"\n}",
+    "responses": {
+        "200": {
+            "description": "Compilation successful",
+            "body": "{\n  \"result\": \"<html>...compiled WASM output...</html>\"\n}"
+        },
+        "400": {
+            "description": "Compilation error",
+            "body": "{\n  \"error\": \"Compilation failed: [error details]\"\n}"
+        }
+    }
+}
+```
 
-### Frontend Features (Svelte)
+---
 
-  * **Sidebar:** Includes controls for:
-      * Real-time compilation status and logs.
-      * Input to adjust code editor font size.
-      * Toggle for Light/Dark theme.
-  * **Code Editor:** A syntax-highlighted editor with an adjustable size.
-  * **Canvas Container:** Dynamically loads and runs the compiled HTML output from the backend.
+## Configuration Options
 
------
+- **Frontend Port**: `5173` (Svelte dev server).
+- **Backend Port**: `3000` (`server.js`).
+- **Editor Options**: Font size and theme set in the frontend UI.
+- **Toolchain Paths**: Emscripten and SDL2_BGI paths configured in backend compiler logic.
 
-## ⚠️ Notes
+---
 
-  * **Git Exclusion:** Do **not** push `emsdk` and `sdl_bgi` to GitHub. They are large, local dependencies. The `.gitignore` file should exclude:
-    ```bash
-    backend/compiler/emsdk/
-    backend/compiler/sdl_bgi/
-    node_modules/
-    dist/
-    ```
-  * **Browser Compatibility:** A modern web browser with robust **WebAssembly execution** support is required.
+## Project Structure Summary
 
------
+| Directory                | Purpose                                  |
+|--------------------------|------------------------------------------|
+| backend/compiler/        | External toolchains and libraries        |
+| backend/server.js        | Node.js compilation server               |
+| frontend/src/App.svelte  | Main Svelte application component        |
+| frontend/package.json    | Frontend dependencies and scripts        |
+| .gitignore               | Excludes large and generated artifacts   |
+
+---
+
+## Browser Compatibility
+
+- Requires WebAssembly support.
+- Works on current Chrome, Firefox, and Edge versions.
+
+---
+
 ## License
 
-MIT License © 2025 kmanisk.  
-Permission is granted to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of this software, under the condition that the copyright notice and this permission notice are included in all copies.  
-The software is provided "as is", without any warranty.
+RetroRaster uses the MIT License. Include the license text with distributions or substantial portions of the software.
+
+---
+
+```card
+{
+    "title": "Best Practice",
+    "content": "Do not commit external dependencies or build artifacts to version control. Use .gitignore as described."
+}
+```
+
+---
+
+## Summary
+
+Use this guide to install dependencies, configure the environment, and run RetroRaster locally for C BGI graphics.
