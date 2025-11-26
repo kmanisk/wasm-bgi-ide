@@ -10,9 +10,15 @@ RetroRaster compiles C graphics code in the browser using a Node.js backend and 
 
 ---
 
-## Demo Media (Image / Video / GIF)
+## Demo Media
+## Compile Example
+![Compile GIF](public/compile.gif)
 
-You can add screenshots, demo videos, or GIFs here later to visually showcase RetroRaster on GitHub.
+## Recompile Example
+![Recompile GIF](public/re-compile.gif)
+
+## Screenshot
+![UI Screenshot](public/pic.png)
 
 ---
 
