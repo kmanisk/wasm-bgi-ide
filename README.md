@@ -29,8 +29,8 @@ Follow these steps to run RetroRaster locally.
 ### 1. Clone the Repository
 
 ```bash
-git clone <repo_url>
-cd RetroRaster
+git clone https://github.com/kmanisk/wasm-bgi-ide.git
+cd wasm-bgi-ide
 ```
 
 ### 2. Obtain Dependencies: Emscripten SDK & SDL2_BGI
@@ -50,7 +50,7 @@ cd ../../..
 #### Download SDL2_BGI
 
 ```bash
-git clone https://github.com/tschaub/SDL2_bgi.git backend/compiler/sdl_bgi
+curl -L -o SDL2_bgi-3.0.4.tar.gz https://sourceforge.net/projects/sdl-bgi/files/SDL2_bgi-3.0.4.tar.gz/download
 ```
 
 > **Note:** These libraries are intentionally excluded from source control by `.gitignore`.
@@ -72,7 +72,11 @@ pnpm install
 cd ../frontend
 pnpm install
 ```
-
+### 4. Run the App
+```bash
+pnpm dev
+```
+<!-- 
 ---
 
 ## Environment Setup & Configuration
@@ -92,8 +96,8 @@ RetroRaster/
 │  │  └─ App.svelte
 │  └─ package.json
 └─ .gitignore
-```
-
+``` -->
+<!-- 
 ### .gitignore Settings
 
 Ensure these entries exist to avoid committing large or generated files.
@@ -103,8 +107,8 @@ backend/compiler/emsdk/
 backend/compiler/sdl_bgi/
 node_modules/
 dist/
-```
-
+``` -->
+<!-- 
 ---
 
 ## Running the Application Locally
@@ -117,9 +121,9 @@ node server.js
 ```
 
 - Serves at `http://localhost:3000`.
-- Compiles C code to WASM for the frontend.
+- Compiles C code to WASM for the frontend. -->
 
-### 2. Start the Frontend (Svelte Application)
+<!-- ### 2. Start the Frontend (Svelte Application)
 
 ```bash
 cd ../frontend
@@ -127,9 +131,9 @@ pnpm dev
 ```
 
 - Runs at `http://localhost:5173`.
-- Connects to the backend for compilation.
+- Connects to the backend for compilation. -->
 
----
+<!-- ---
 
 ## Usage Flow
 
@@ -138,7 +142,7 @@ pnpm dev
 3. Click **"Compile & Run"**.
 4. View graphics in the canvas and interact as needed.
 
----
+--- -->
 
 ## Example: C Code for Graphics
 
@@ -204,7 +208,7 @@ The frontend calls this endpoint to compile code.
 - **Editor Options**: Font size and theme set in the frontend UI.
 - **Toolchain Paths**: Emscripten and SDL2_BGI paths configured in backend compiler logic.
 
----
+<!-- ---
 
 ## Project Structure Summary
 
@@ -216,7 +220,7 @@ The frontend calls this endpoint to compile code.
 | frontend/package.json    | Frontend dependencies and scripts        |
 | .gitignore               | Excludes large and generated artifacts   |
 
----
+--- -->
 
 ## Browser Compatibility
 
