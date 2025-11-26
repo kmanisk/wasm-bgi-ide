@@ -1,0 +1,17 @@
+# BUGS
+
+The following are the bugs I am aware of; matter of fact, they're
+bugs affecting the running environment, rather than SDL_bgi itself.
+
+- Automatic refresh does not work on NVIDIA GK208BM (GeForce 920M) with 
+nvidia-driver-* on GNU/Linux. As far as I can say, this is an NVIDIA
+driver problem.
+
+- On MSYS2, keyboard-related functions may cause the program to freeze
+and/or hang. I've tried hard to find out, but I give up: I assume that
+it's a bug in MSYS2 and/or associated libraries/software.
+
+- The Python port is much less responsive to mouse clicks and key
+presses than the C version.
+
+Please report bugs if you find any.
