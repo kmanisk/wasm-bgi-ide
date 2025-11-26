@@ -5,7 +5,7 @@ int main() {
   circle(300, 200, 150);
   setcolor(WHITE);
   outtextxy(250, 190, "WASM LIVE!");
-  getch();
+  // Note: getch() can block in some WASM builds; click the canvas to interact.
   closegraph();
   return 0;
 }

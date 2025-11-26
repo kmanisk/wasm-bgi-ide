@@ -7,15 +7,24 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Node modules
+node_modules/
+backend/node_modules/
+
+# Build output
+dist/
+dist-ssr/
 *.local
+
+# Emscripten SDK and SDL BGI source
+backend/emsdk/
+backend/compiler/sdl_bgi/
+backend/compiler/*.html
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
