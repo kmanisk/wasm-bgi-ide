@@ -12,13 +12,13 @@ RetroRaster compiles C graphics code in the browser using a Node.js backend and 
 
 ## Demo Media
 ## Compile Example
-![Compile GIF](public/compile.gif)
+![Compile GIF](/frontend/public/compile.gif)
 
 ## Recompile Example
-![Recompile GIF](public/re-compile.gif)
+![Recompile GIF](/frontend/public/re-compile.gif)
 
 ## Screenshot
-![UI Screenshot](public/pic.png)
+![UI Screenshot](/frontend/public/pic.png)
 
 ---
 
