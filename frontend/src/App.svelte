@@ -98,10 +98,10 @@ int main() {
 		main {
 			font-family: Arial, sans-serif;
 			background-color: {
-				theme=== "dark" ? "#121212" : "#ffffff";
+				theme==="dark" ? "#121212" : "#ffffff";
 			}
 			color: {
-				theme=== "dark" ? "#ffffff" : "#121212";
+				theme==="dark" ? "#ffffff" : "#121212";
 			}
 			padding: 0;
 			margin: 0;
@@ -113,7 +113,7 @@ int main() {
 
 		.editor-container {
 			background-color: {
-				theme=== "dark" ? "#1e1e1e" : "#f5f5f5";
+				theme==="dark" ? "#1e1e1e" : "#f5f5f5";
 			}
 			border-radius: 8px;
 			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -128,13 +128,13 @@ int main() {
 			justify-content: space-between;
 			align-items: center;
 			background-color: {
-				theme=== "dark" ? "#2c2c2c" : "#e0e0e0";
+				theme==="dark" ? "#2c2c2c" : "#e0e0e0";
 			}
 		}
 
 		.actions button {
 			background-color: {
-				theme=== "dark" ? "#007acc" : "#0078d4";
+				theme==="dark" ? "#007acc" : "#0078d4";
 			}
 			color: #ffffff;
 			border: none;
@@ -146,14 +146,14 @@ int main() {
 
 		.actions button:hover {
 			background-color: {
-				theme=== "dark" ? "#005999" : "#005a9e";
+				theme==="dark" ? "#005999" : "#005a9e";
 			}
 		}
 
 		.editor {
 			height: 300px;
 			border-bottom: 1px solid {
-				theme=== "dark" ? "#444444" : "#cccccc";
+				theme==="dark" ? "#444444" : "#cccccc";
 			}
 		}
 
@@ -167,10 +167,10 @@ int main() {
 			padding: 8px 16px;
 			text-align: center;
 			background-color: {
-				theme=== "dark" ? "#2c2c2c" : "#e0e0e0";
+				theme==="dark" ? "#2c2c2c" : "#e0e0e0";
 			}
 			color: {
-				theme=== "dark" ? "#00ff00" : "#ff0000";
+				theme==="dark" ? "#00ff00" : "#ff0000";
 			}
 		}
 	</style>
